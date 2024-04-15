@@ -11,20 +11,19 @@
  */
 class Solution {
 public:
-    void sum(TreeNode* root, int t, int &ans){
-        if(!root) return;
+    int sum(TreeNode* root, int t, int ans){
+        if(!root) return 0;
 
-        t = root->val + t*10;   // 4, 
+        t = root->val + t*10;  
         if(!root->left && !root->right){
             ans += t;
-            return;
+            return ans;
         }
-        sum(root->left, t, ans);
-        sum(root->right, t, ans);
+        int l = sum(root->left, t, ans);
+        int r = sum(root->right, t, ans);
+        return l+r;
     }
     int sumNumbers(TreeNode* root) {
-        int ans = 0;
-        sum(root, 0, ans);
-        return ans;
+        return sum(root, 0, 0);
     }
 };
