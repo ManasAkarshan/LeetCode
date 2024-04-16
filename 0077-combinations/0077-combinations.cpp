@@ -15,9 +15,8 @@ public:
 
     }
     vector<vector<int>> combine(int n, int k) {
-        vector<int> temp;
         vector<vector<int>> ans;
-        sol(n, ans, temp, 1, k);
+        sol(n, ans, {}, 1, k);
         return ans;
     }
 };
