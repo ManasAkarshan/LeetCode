@@ -10,8 +10,8 @@ public:
 
         int temp = grid[i][j];
         grid[i][j] = -1;
-        int drow[] = {1, -1, 0, 0};
-        int dcol[] = {0, 0, -1, 1};
+        int drow[] = {-1, 0, 1, 0};
+        int dcol[] = {0, -1, 0, 1};
 
         for(int x=0; x<4; x++){
             int nr = i + drow[x];
