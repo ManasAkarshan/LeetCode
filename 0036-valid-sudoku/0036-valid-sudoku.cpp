@@ -1,0 +1,47 @@
+class Solution {
+public:
+    bool validateBox(int sr, int er, int sc, int ec, vector<vector<char>>& board){
+        unordered_map<char, bool> mp;
+        for(int i=sr; i<=er; i++){
+            for(int j=sc; j<=ec; j++){
+                if(board[i][j] == '.') continue;
+                if(mp.find(board[i][j]) != mp.end()) return false;
+                mp[board[i][j]] = 1;
+            }
+        }
+        return true;
+    }
+    bool isValidSudoku(vector<vector<char>>& board) {
+        // validate row
+        for(int i=0; i<9; i++){
+            unordered_map<char, bool> mp;
+            for(int j=0; j<9; j++){
+                if(board[i][j] == '.') continue;
+                if(mp.find(board[i][j]) != mp.end()) return false;
+                mp[board[i][j]] = 1;
+            }
+        }
+
+        // validate col
+        for(int j=0; j<9; j++){
+            unordered_map<char, bool> mp;
+            for(int i=0; i<9; i++){
+                if(board[i][j] == '.') continue;
+                if(mp.find(board[i][j]) != mp.end()) return false;
+                mp[board[i][j]] = 1;
+            }
+        }
+
+        for(int sr = 0; sr < 9; sr += 3){
+            int er = sr+2;
+
+            for(int sc = 0; sc<9; sc+=3){
+                int ec = sc+2;
+
+                if(!validateBox(sr, er, sc, ec, board)) return false; 
+            }
+        }
+
+        return true;
+    }
+};
