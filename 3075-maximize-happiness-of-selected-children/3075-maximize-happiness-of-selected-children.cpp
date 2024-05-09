@@ -5,12 +5,10 @@ public:
     }
     long long maximumHappinessSum(vector<int>& happiness, int k) {
         sort(happiness.begin(), happiness.end(), comp);
-        int j=0;
         long long ans = 0;
 
         for(int i=0; i<k; i++){
-            ans += (happiness[j]-i) > 0? happiness[j]-i : 0;
-            j++;
+            ans += (happiness[i]-i) > 0? happiness[i]-i : 0;
         }
 
         return ans;
