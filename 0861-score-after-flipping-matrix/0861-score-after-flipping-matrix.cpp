@@ -8,8 +8,7 @@ public:
 
     int matrixScore(vector<vector<int>>& grid) {
         // Row Wise
-        int m = grid.size(), n = grid[0].size();
-        //m(row) = 3, n(col) = 4;
+        int m = grid.size(), n = grid[0].size(); //m(row) = 3, n(col) = 4;
         int ans = 0;
 
         for(int row=0; row<m; row++){
@@ -18,14 +17,6 @@ public:
             }
         }
 
-        for(int i=0; i<m; i++){
-            int temp = 0, to = 1;
-            for(int j=n-1; j>=0; j--){
-                cout<<grid[i][j]<<" ";
-            }
-            cout<<endl;
-        }
-        cout<<endl;
         // Col Wise
         int col, row;
         for(col=n-1; col>=1; col--){
@@ -39,11 +30,9 @@ public:
         for(int i=0; i<m; i++){
             int temp = 0, to = 1;
             for(int j=n-1; j>=0; j--){
-                cout<<grid[i][j]<<" ";
                 temp += grid[i][j] * to;
                 to *= 2;
             }
-            cout<<endl;
             ans += temp;
         }
 
