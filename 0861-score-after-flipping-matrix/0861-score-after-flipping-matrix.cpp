@@ -28,7 +28,7 @@ public:
         cout<<endl;
         // Col Wise
         int col, row;
-        for(col=n-1; col>=0; col--){
+        for(col=n-1; col>=1; col--){
             int cnt = 0;
             for(row=0; row<m; row++){
                 if(grid[row][col] == 0) cnt++;
