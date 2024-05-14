@@ -1,8 +1,6 @@
 class Solution {
 public:
     int solve(vector<vector<int>>& grid, int r, int c){
-        if(r>=grid.size() || r<0 || c>=grid[0].size() || c<0) return 0;
-
         int ans = 0;
 
         int drow [] = {-1, 0, 1, 0};
