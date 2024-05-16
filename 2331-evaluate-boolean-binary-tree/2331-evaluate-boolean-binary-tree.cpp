@@ -12,7 +12,6 @@
 class Solution {
 public:
     bool helper(TreeNode* root){
-        if(!root) return true;
         if(!root->left && !root->right) return root->val;
 
         int op = root->val;
