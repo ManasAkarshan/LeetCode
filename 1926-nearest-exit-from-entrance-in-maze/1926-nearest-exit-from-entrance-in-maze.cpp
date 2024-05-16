@@ -6,9 +6,8 @@ public:
         vector<vector<int>> vis(m, vector<int>(n, 0));
 
         queue<pair<pair<int,int>, int>> q;
-        q.push({{i, j}, 1e8});
+        q.push({{i, j}, 0});
         vis[i][j] = 1;
-        int ans = 1e8;
 
         while(!q.empty()){
             int r = q.front().first.first;
@@ -16,7 +15,7 @@ public:
             int dis = q.front().second;
             q.pop();
 
-            if(r==0 || r==m-1 || c==0 || c==n-1) ans = min(ans, dis);
+            if(!(r==i && c==j)) if(r==0 || r==m-1 || c==0 || c==n-1) return dis;
 
             int drow[] = {-1, 0, 1, 0};
             int dcol[] = {0, 1, 0, -1};
@@ -26,12 +25,11 @@ public:
                 int nc = c + dcol[i];
 
                 if(nr<m && nr>=0 && nc<n && nc>=0 && !vis[nr][nc] && maze[nr][nc] == '.') {
-                    int newDis = (dis==1e8) ? 1 : dis + 1;
-                    q.push({{nr, nc}, newDis});
+                    q.push({{nr, nc}, dis+1});
                     vis[nr][nc] = 1;
                 }
             }
         }
-        return ans == 1e8 ? -1 : ans;
+        return -1;
     }
 };
