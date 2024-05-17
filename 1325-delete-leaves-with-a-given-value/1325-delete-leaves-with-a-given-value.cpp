@@ -22,11 +22,11 @@ public:
         }
     }
     TreeNode* removeLeafNodes(TreeNode* root, int target) {
-        if(!root->left && !root->right && root->val == target) return NULL;
 
         helper(root->left, target, 1, root);
         helper(root->right, target, 0, root);
         if(!root->left && !root->right && root->val == target) return NULL;
+
         return root;
     }
 };
