@@ -42,10 +42,9 @@ public:
         }
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
-                if(vis[i][j] == 1){
-                    board[i][j] = 'O';
+                if(vis[i][j] == 0){
+                    board[i][j] = 'X';
                 }
-                else board[i][j] = 'X';
             }
         }
     }
