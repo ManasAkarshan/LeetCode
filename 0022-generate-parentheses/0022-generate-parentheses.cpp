@@ -24,7 +24,7 @@ public:
 
         s.push_back(')');
         generate(ans, s, n);
-        s.pop_back();
+        // s.pop_back();      dalo na dalo barabar
     }
 
     vector<string> generateParenthesis(int n) {
