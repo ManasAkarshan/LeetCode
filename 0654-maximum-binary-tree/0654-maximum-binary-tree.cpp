@@ -15,12 +15,7 @@ public:
         if(s > e) return NULL;
         pair<int,int> maxi(nums[s], s);
 
-        for(int i=s; i<=e; i++){
-            if(nums[i] > maxi.first){
-                maxi = make_pair(nums[i], i);
-            }
-        }
-
+        for(int i=s; i<=e; i++) if(nums[i] > maxi.first) maxi = make_pair(nums[i], i);
 
         TreeNode* root = new TreeNode(maxi.first);
 
@@ -32,11 +27,7 @@ public:
     TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
         pair<int,int> maxi(nums[0], 0);
 
-        for(int i=1; i<nums.size(); i++){
-            if(nums[i] > maxi.first){
-                maxi = make_pair(nums[i], i);
-            }
-        }
+        for(int i=1; i<nums.size(); i++) if(nums[i] > maxi.first) maxi = make_pair(nums[i], i);
 
         TreeNode* root = new TreeNode(maxi.first);
 
