@@ -7,7 +7,7 @@ public:
         if(dp[amount][ind] != -1) return dp[amount][ind] ;
 
         //take
-        int take = take = 1 + solve(coins, amount-coins[ind], ind, dp);
+        int take = 1 + solve(coins, amount-coins[ind], ind, dp);
 
         //notTake
         int notTake = solve(coins, amount, ind+1, dp);
