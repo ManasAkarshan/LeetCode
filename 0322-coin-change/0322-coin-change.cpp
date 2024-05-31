@@ -1,46 +1,22 @@
 class Solution {
 public:
-    // int rec(vector<int>& coins, int ind, int amount){
-    //     if(ind == 0){
-    //         if(amount%coins[ind] == 0) return amount/coins[ind];
-    //         else return 1e8;
-    //     }
+    int solve(vector<int>& coins, int amount, int ind, vector<vector<int>>& dp){
+        if(amount == 0) return 0;
+        if(ind >= coins.size()) return 1e7;
+        if(dp[amount][ind] != -1) return dp[amount][ind] ;
 
-    //     if(amount<0) return 1e8;
+        //take
+        int take = 1e7;
+        if(coins[ind] <= amount) take = 1 + solve(coins, amount-coins[ind], ind, dp);
 
-    //     int notTake = rec(coins, ind-1, amount);
+        //notTake
+        int notTake = solve(coins, amount, ind+1, dp);
 
-    //     int take = INT_MAX;
-    //     if(coins[ind]<=amount) take = 1 + rec(coins, ind, amount-coins[ind]);
-
-    //     return min(take, notTake);
-    // }
-
-    int memo(vector<int>& coins, int ind, int amount, vector<vector<int>> &dp){
-        if(ind == 0){
-            if(amount%coins[ind] == 0) return amount/coins[ind];
-            else return 1e8;
-        }
-
-        if(amount<0) return 1e8;
-        if(dp[ind][amount] != -1) return dp[ind][amount];
-
-        int notTake = memo(coins, ind-1, amount, dp);
-
-        int take = INT_MAX;
-        if(coins[ind]<=amount) take = 1 + memo(coins, ind, amount-coins[ind], dp);
-
-        return dp[ind][amount] = min(take, notTake);
+        return dp[amount][ind] =  min(take, notTake);
     }
-
     int coinChange(vector<int>& coins, int amount) {
-        int n = coins.size();
-        // int ans = rec(coins, n-1, amount);
-        // return ans == 1e8 ? -1 : ans;
-
-        vector<vector<int>> dp(n, vector<int>(amount+1, -1));
-
-        int ans = memo(coins, n-1, amount, dp);
-        return ans == 1e8 ? -1 : ans;
+        vector<vector<int>> dp(amount+1, vector<int>(coins.size(), -1));
+        int ans = solve(coins, amount, 0, dp);
+        return ans == 10000000 ? -1 : ans;
     }
 };
