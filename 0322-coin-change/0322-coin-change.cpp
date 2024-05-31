@@ -3,11 +3,11 @@ public:
     int solve(vector<int>& coins, int amount, int ind, vector<vector<int>>& dp){
         if(amount == 0) return 0;
         if(ind >= coins.size()) return 1e7;
+        if(amount < 0) return 1e7;
         if(dp[amount][ind] != -1) return dp[amount][ind] ;
 
         //take
-        int take = 1e7;
-        if(coins[ind] <= amount) take = 1 + solve(coins, amount-coins[ind], ind, dp);
+        int take = take = 1 + solve(coins, amount-coins[ind], ind, dp);
 
         //notTake
         int notTake = solve(coins, amount, ind+1, dp);
