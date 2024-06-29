@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int check(vector<int>& weights, int days, int mid){
+    bool check(vector<int>& weights, int days, int mid){
         int load = 0, d = 1;
         for(int i=0; i<weights.size(); i++){
             if (weights[i] + load > mid){
@@ -15,24 +15,22 @@ public:
         return 0;
     }
     int shipWithinDays(vector<int>& weights, int days) {
-        int low = INT_MIN , high = 0, mid, ans;
-
-        for(int i=0; i<weights.size(); i++){
-            high += weights[i];
-            low = max(low, weights[i]);
+        int i=INT_MIN,j=0, ans=0;
+        for(int a=0; a<weights.size(); a++) {
+            j+= weights[a]; 
+            i=max(i, weights[a]);
         }
 
-        while(low<=high){
-            mid = low + (high-low)/2;
+        while(i<=j){
+            int mid = i+(j-i)/2;
 
             if(check(weights, days, mid)){
-                high = mid - 1;
                 ans = mid;
+                j=mid-1;
             }
-            else {
-                low = mid + 1;
-            }
+            else i = mid+1;
         }
+
         return ans;
     }
 };
