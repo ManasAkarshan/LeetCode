@@ -16,8 +16,8 @@ public:
                 indegree[it]++;
             }
         }
+
         for(int i=0; i<indegree.size(); i++){
-            cout<<indegree[i]<<" ";
             if(indegree[i] == 0) q.push(i);
         }
 
