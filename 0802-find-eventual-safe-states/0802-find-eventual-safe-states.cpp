@@ -2,22 +2,23 @@ class Solution {
 public:
     vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
         int m = graph.size();
-        vector<int> adj[m], adjRev[m];
+        vector<int> adj[m];
+        vector<int> indegree(m, 0);
         for(int i=0; i<m; i++){
             for(auto j : graph[i]){
-                adj[i].push_back(j);
+                adj[j].push_back(i);
+                indegree[i]++; 
             }
         }
 
-        vector<int> indegree(m, 0);
         // Reverse adj list to find out degree
-        for(int i=0; i<m; i++){
-            // From i --> it  to  it --> i
-            for(auto it : adj[i]){
-                adjRev[it].push_back(i);    // it --> i
-                indegree[i]++;              // Basically outdergree of it if it would not have been reveresed
-            } 
-        }
+        // for(int i=0; i<m; i++){
+        //     // From i --> it  to  it --> i
+        //     for(auto it : adj[i]){
+        //         adjRev[it].push_back(i);    // it --> i
+        //                      // Basically outdergree of it if it would not have been reveresed
+        //     } 
+        // }
 
         queue<int> q;
         vector<int> ans = {};
@@ -30,7 +31,7 @@ public:
             q.pop();
             ans.push_back(top);
 
-            for(auto adjNode : adjRev[top]){
+            for(auto adjNode : adj[top]){
                 indegree[adjNode]--;
                 if(indegree[adjNode] == 0) 
                     q.push(adjNode);
