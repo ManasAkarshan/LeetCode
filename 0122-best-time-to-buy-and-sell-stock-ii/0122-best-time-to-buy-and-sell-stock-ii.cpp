@@ -30,7 +30,6 @@ public:
         // vector<vector<int>> dp(n, vector<int>(2, -1));
         // return memo(0, 1, prices, dp);
 
-
         vector<vector<int>> dp(n+1, vector<int>(2, 0));
 
         for(int i=0; i<2; i++) dp[n][i] = 0;
