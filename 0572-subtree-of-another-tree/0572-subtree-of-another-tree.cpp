@@ -16,8 +16,7 @@ public:
             return true;
         if(root==NULL)
             return false;
-        if(isidentical(root,subRoot))
-            return true;
+        if(isidentical(root,subRoot)) return true;
         return isSubtree(root->left,subRoot) || isSubtree(root->right,subRoot);
     }
 
