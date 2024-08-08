@@ -17,7 +17,10 @@ public:
         if(root==NULL)
             return false;
         if(isidentical(root,subRoot)) return true;
-        return isSubtree(root->left,subRoot) || isSubtree(root->right,subRoot);
+        bool left = isSubtree(root->left,subRoot);
+        bool right = isSubtree(root->right,subRoot);
+
+        return left || right;
     }
 
     bool isidentical(TreeNode* a, TreeNode* b){
